@@ -51,7 +51,9 @@ Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現し�
 * node appで実行できない  
 「warn  - error raised: Error: listen EADDRINUSE」と表示される場合は、既に
 80番ポートが開かれています。Apacheなどの他のWebサーバが起動しているものと
-思われます。他のWebサーバを停止してください。
+思われます。他のWebサーバを停止してください。  
+Pochiで80番以外のポートを使用したい場合は、config.jsonファイルをテキスト
+エディタで開き、「"port": "80"」の行を編集してください。
 
 # TODO
 
