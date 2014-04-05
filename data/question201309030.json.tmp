@@ -1,0 +1,30 @@
+{
+    "title": "オブジェクト指向ほげほげ論",
+    "contents": [
+        {
+            "question": "JavaScriptの経験は?",
+            "type": "options",
+            "showResults": "true",
+            "options": [
+                "10年以上",
+                "6～10年",
+                "3～5年",
+                "3年以下",
+                "なし"
+            ]
+        },
+        {
+            "question": "あなたの出身地は?",
+            "type": "options",
+            "showResults": "true",
+            "options": [
+                "千葉市",
+                "千葉県",
+                "東京都",
+                "埼玉県",
+                "神奈川県",
+                "香川県"
+            ]
+        }
+    ]
+}

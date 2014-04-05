@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pochi設定</title>
+	<link rel='stylesheet' href='/jquery-easyui/themes/icon.css' />-->
+    <link rel='stylesheet' href='/stylesheets/jquery.mobile-1.3.2.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/jquery-1.8.0.min.js"></script>
+	<script src="/javascripts/jquery.mobile-1.3.2.min.js"></script>
+	<script src="/javascripts/config.js"></script>
+	<script src="/javascripts/common.js"></script>
+  </head>
+  <body>
+    <% function selected(key, value) {
+    	 if (key == value || key == ''+value) return 'checked';
+    	 return '';
+    } %>
+    <div id="editpage" data-role="page" data-theme="e">
+      <div data-role="header" data-theme="b" data-position="fixed">
+        <a href="/admin" data-role="button" data-ajax="false" data-icon="back">戻る</a>
+        <h1><img src="../images/Pochi-logo.png" class="logo">Pochi設定</h1>
+      </div>
+      <div data-role="content">
+        <p style="font-size:80%">
+        	(*)が付いている項目は、サーバを再起動するまで反映されません。<br>
+        	(+)が付いている項目は、回答者がページの読み込みをするまで反映されません。</p>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>途中経過のグラフ</legend>
+            <input type="radio" name="showTransition" id="showTransitionTrue" value="true" <%-selected(config.showTransition, true)%> />
+            <label for="showTransitionTrue">表示する</label>
+            <input type="radio" name="showTransition" id="showTransitionFalse" value="false" <%-selected(config.showTransition, false)%> />
+            <label for="showTransitionFalse">表示しない</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>回答者画面に自身の選択を(+)</legend>
+            <input type="radio" name="showSelection" id="showSelectionTrue" value="true" <%-selected(config.showSelection, true)%> />
+            <label for="showSelectionTrue">表示する</label>
+            <input type="radio" name="showSelection" id="showSelectionFalse" value="false" <%-selected(config.showSelection, false)%> />
+            <label for="showSelectionFalse">表示しない</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>回答者画面に集計結果を(+)</legend>
+            <input type="radio" name="showResults" id="showResultsTrue" value="true" <%-selected(config.showResults, true)%> />
+            <label for="showResultsTrue">表示する</label>
+            <input type="radio" name="showResults" id="showResultsFalse" value="false" <%-selected(config.showResults, false)%> />
+            <label for="showResultsFalse">表示しない</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>クライアント個別認識</legend>
+            <input type="radio" name="clientKey" id="clientKeyIpaddress" value="ipaddress" <%-selected(config.clientKey, 'ipaddress')%> />
+            <label for="clientKeyIpaddress">IPアドレス</label>
+            <input type="radio" name="clientKey" id="clientKeyCookie" value="cookie" <%-selected(config.clientKey, 'cookie')%> />
+            <label for="clientKeyCookie">Cookie</label>
+            <input type="radio" name="clientKey" id="clientKeySocketid" value="socketid" <%-selected(config.clientKey, 'socketid')%> />
+            <label for="clientKeySocketid">Socket ID</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>アドレス表示用ホスト名</legend>
+            <input type="text" name="hostname" id="hostname" value="<%-config.hostname%>" /><br>
+            <label style="font-size:75%">※ IPアドレスで接続させる場合は空欄にしてください。</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>サーバのポート番号(*)</legend>
+            <input type="number" style="width:80px" name="port" id="port" value="<%-config.port%>" data-inline="true" /><br>
+            <label style="font-size:75%">※ 標準は80です</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>管理者ユーザ名</legend>
+            <input type="text" name="adminUser" id="adminUser" value="<%-config.adminUser%>" /><br>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>管理者パスワード</legend>
+            <input type="password" name="adminPassword" id="adminPassword" value="<%-config.adminPassword%>" /><br>
+            <label style="font-size:75%">※ 初期パスワードから必ず変更してください。</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>質問していない時のメッセージ</legend>
+            <input type="text" name="idleMessage" id="idleMessage" value="<%-config.idleMessage%>" />
+          </fieldset>
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed" id="control">
+		<input type="submit" id="post" value="保存" data-icon="check" onClick="save();">
+      </div>
+    </div>
+  </body>
+</html>

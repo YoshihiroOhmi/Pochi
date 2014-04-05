@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pochi質問編集</title>
+	<link rel='stylesheet' href='/jquery-easyui/themes/default/easyui.css' />
+	<link rel='stylesheet' href='/jquery-easyui/themes/icon.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery.mobile-1.3.2.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/edit.css' />
+    <script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/jquery-1.8.0.min.js"></script>
+	<script src="/jquery-easyui/jquery.easyui.min.js"></script>
+	<script src="/javascripts/jquery.mobile-1.3.2.min.js"></script>
+	<script src="/javascripts/edit.js"></script>
+	<script src="/javascripts/common.js"></script>
+  </head>
+  <body>
+    <div id="editpage" data-role="page" data-theme="e">
+      <div data-role="header" data-theme="b" data-position="fixed">
+        <h1><img src="../images/Pochi-logo.png" class="logo">Pochi質問編集</h1>
+      </div>
+      <div data-role="content">
+      	  <div data-role="fieldcontain">
+      	    <label for="title">質問集のタイトル</label>
+            <input name="title" type="text" value="<%=questions.title%>" />
+          </div>
+          <hr>
+          <fieldset id="qlist"></fieldset>
+        <script>questions=<%-JSON.stringify(questions)%>;filename="<%-fname%>";
+          jQuery(function($){objectToHtml();});</script>
+      </div>
+      <div data-role="footer" data-position="fixed" id="control">
+        <a href="/admin" data-role="button" data-icon="back">戻る</a>
+		<input type="submit" id="post" value="保存" data-icon="check" onClick="post();">
+		<a data-role="button" data-icon="plus" onClick="addQuestions()">質問追加</a>
+		<a data-role="button" data-icon="delete" onClick="delQuestions()">この質問集を削除</a>
+		<a data-role="button" data-icon="grid" onClick="dupQuestions()">この質問集を複製</a>
+		<a href="/admin/csv?out=<%=fname%>" data-role="button" data-ajax="false">CSV出力</a>
+      </div>
+    </div>
+    <div data-role="dialog" id="confirmDelQ" data-theme="e">
+      <div data-role="header">
+        <h1>削除してもいいですか?</h1>
+      </div>
+      <div data-role="content">
+        <p>質問を削除すると元に戻せません。削除してもいいですか?</p>
+        <a data-role="button" data-inline="true" style="left:50px"
+          onClick="confirmDelQ(true);">はい</a>
+        <a data-role="button" data-inline="true" style="position:absolute;right:50px"
+          onClick="confirmDelQ(false);">いいえ</a>
+      </div>
+    </div>
+    <div data-role="dialog" id="confirmDel" data-theme="e">
+      <div data-role="header">
+        <h1>削除してもいいですか?</h1>
+      </div>
+      <div data-role="content">
+        <p>質問集を削除すると元に戻せません。削除してもいいですか?</p>
+        <a data-role="button" data-inline="true" style="left:50px"
+          onClick="confirmDel(true);">はい</a>
+        <a data-role="button" data-inline="true" style="position:absolute;right:50px"
+          onClick="confirmDel(false);">いいえ</a>
+      </div>
+    </div>
+    <div data-role="dialog" id="confirmDup" data-theme="e">
+      <div data-role="header">
+        <h1>複製を作ってもいいですか?</h1>
+      </div>
+      <div data-role="content">
+        <p>保存後に変えた内容は反映されません。質問集を複製してもいいですか?</p>
+        <a data-role="button" data-inline="true" style="left:50px"
+          onClick="confirmDup(true);">はい</a>
+        <a data-role="button" data-inline="true" style="position:absolute;right:50px"
+          onClick="confirmDup(false);">いいえ</a>
+      </div>
+    </div>
+  </body>
+</html>

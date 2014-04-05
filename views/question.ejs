@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pochi管理画面</title>
+<!--    <link rel='stylesheet' href='/stylesheets/jquery-ui-1.10.3.custom.min.css' />-->
+	<link rel='stylesheet' href='/jquery-easyui/themes/default/easyui.css' />
+	<link rel='stylesheet' href='/jquery-easyui/themes/icon.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery.mobile-1.3.2.min.css' />
+<!--    <link rel='stylesheet' href='/stylesheets/jquery.jqplot.min.css' />-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+ 	<style type="text/css">
+		.progressbar-text {text-align: left; padding-left: 10px; font-size: 180%}
+	</style>   
+    <script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/jquery-1.8.0.min.js"></script>
+<!--	<script src="/javascripts/jquery-ui-1.10.3.custom.min.js"></script>-->
+	<script src="/jquery-easyui/jquery.easyui.min.js"></script>
+	<script src="/javascripts/jquery.mobile-1.3.2.min.js"></script>
+	<script src="/javascripts/jquery.qrcode.min.js"></script>	
+<!--	<script src="/javascripts/jquery.jqplot.min.js"></script>-->
+<!--	<script src="/javascripts/jqplot.barRenderer.min.js"></script>-->
+<!--	<script src="/javascripts/jqplot.categoryAxisRenderer.min.js"></script>-->
+	<script src="/javascripts/common.js"></script>
+	<script src="/javascripts/question.js"></script>
+  </head>
+  <body>
+    <div id="questionpage" data-role="page" data-theme="e">
+      <div data-role="header" data-theme="b" data-position="fixed">
+        <h1><img src="../images/Pochi-logo.png" class="logo">Pochi質問中</h1>
+      </div>
+      <div data-role="content">
+        <label id="question" class="question-admin">質問項目</label>
+		<ul id="options" data-role="listview" data-inset="true"></ul>
+        <div id="progressbar" class="easyui-progressbar" style="height:30px"></div>
+        <div id="othermessage"></div>
+  	    <script>checkWebSocket();</script>
+      </div>
+      <div data-role="footer" data-position="fixed" id="control">
+      	<a href="/admin/" data-role="button" id="finish"
+            data-ajax="false" onClick="finish()">終了する</a>
+		<input type="button" id="prev" data-icon="arrow-l" onClick="prev()" value="前の質問へ">
+		<input type="button" id="result" data-icon="check" onClick="result()" value="質問受付終了">
+		<input type="button" id="next" data-icon="arrow-r" onClick="next()" value="次の質問へ">
+        <a href="/admin/address" data-role="button" id="address" data-theme="b" class="rightside">アドレス表示</a>		
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+img.logo {
+	width:30px;
+	height:24px;
+	vertical-align:bottom;
+	align:center;
+}
+
+.question-admin {
+	font-size:300%
+}
+.option-admin {
+	font-size:20pt
+}
+
+.ui-btn-text {
+	font-size:150%
+}
+
+.question-client {
+	font-size:150%
+}
+.option-client {
+	font-size:80%
+}
+
+.rightside {
+	position: absolute;
+	right: 5px
+}	

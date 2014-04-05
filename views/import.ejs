@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pochiインポート</title>
+    <link rel='stylesheet' href='/stylesheets/jquery.mobile-1.3.2.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/jquery-1.8.0.min.js"></script>
+	<script src="/javascripts/jquery.mobile-1.3.2.min.js"></script>
+	<script src="/javascripts/admin.js"></script>
+	<script src="/javascripts/common.js"></script>
+  </head>
+  <body>
+    <div id="admin" data-role="page" data-theme="e">
+      <div data-role="header" data-theme="b" data-position="fixed">
+        <a href="/admin" data-role="button" data-icon="back">戻る</a>
+        <h1><img src="../images/Pochi-logo.png" class="logo" />
+        	Pochi質問集インポート</h1>
+      </div>
+      <div data-role="content">
+        <%if (failed) {%>
+        <p><strong style="color:red">インポートに失敗しました</strong></p>
+        <% } %>
+        <form method="post" enctype="multipart/form-data" action="import" data-ajax="false">
+          <input type="file" name="thumbnail" />
+          <button type="submit" data-inline="true">インポート</button>
+        </form>
+        <p>参照を押してファイルを選択して、インポートボタンを押してください。
+        CSVファイルとJSONファイルの両方が使えます。</p>
+      </div>
+    </div>
+  </body>
+</html>

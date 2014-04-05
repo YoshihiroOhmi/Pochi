@@ -1,0 +1,11 @@
+{
+    "showTransition": "false",
+    "showSelection": "true",
+    "showResults": "false",
+    "clientKey": "ipaddress",
+    "hostname": "",
+    "port": "80",
+    "adminUser": "admin",
+    "adminPassword": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "idleMessage": "現在質問していない状態です。"
+}
