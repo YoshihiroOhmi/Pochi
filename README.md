@@ -22,7 +22,7 @@ Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現し�
 
 # インストール方法
 * Node.jsをインストールする。  
-※ http://nodejs.org/からInstallerをダウンロードしてインストールすることを
+※ http://nodejs.org/ からInstallerをダウンロードしてインストールすることを
 お勧めします。Installerを使わずにインストールした場合は、別途npmをインストー
 ルする必要が生じます。npm単体のインストールは結構面倒です。
 
@@ -35,6 +35,7 @@ Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現し�
 少し時間がかかります。node_modulesというディレクトリができます。
 
 # 使い方
+
 * シェルを起動し、node app を実行します。これでサーバが起動します。  
 ※ MacOSの場合は、sudo node app でrootになって実行してください。
 (ポート番号を80以外にすれば一般ユーザでも起動できます)  
@@ -42,15 +43,18 @@ Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現し�
 
 * 管理者(質問者)はブラウザから http://localhost/admin/ で接続してください。
 認証はユーザ名、パスワードともadminです。
+
 * 管理者トップページから「アドレス表示」を押すと回答者向けのURLとQRコードが
 表示されます。これを使って回答者がPochiにアクセスできます。
 
 # トラブルシューティング
 * node appで実行できない  
-
-
+「warn  - error raised: Error: listen EADDRINUSE」と表示される場合は、既に
+80番ポートが開かれています。Apacheなどの他のWebサーバが起動しているものと
+思われます。他のWebサーバを停止してください。
 
 # TODO
+
 * 画面デザインの改良
 * エラーチェックの追加による動作安定性向上
 …
