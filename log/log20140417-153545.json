@@ -1,0 +1,86 @@
+{
+  "title": "サンプルの質問集",
+  "results": [
+    {
+      "questionNumber": 0,
+      "response": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        3
+      ],
+      "numUser": 7,
+      "total": 7,
+      "startTime": 1397716389705,
+      "endTime": 1397716427592
+    },
+    {
+      "questionNumber": 1,
+      "response": [
+        3,
+        0,
+        1,
+        1,
+        2
+      ],
+      "numUser": 7,
+      "total": 7,
+      "startTime": 1397716443465,
+      "endTime": 1397716459229
+    },
+    {
+      "questionNumber": 2,
+      "response": [
+        3,
+        0,
+        4
+      ],
+      "numUser": 7,
+      "total": 7,
+      "startTime": 1397716482488,
+      "endTime": 1397716526287
+    }
+  ],
+  "questions": {
+    "title": "サンプルの質問集",
+    "contents": [
+      {
+        "question": "あなたの出身地は?",
+        "type": "options",
+        "showResults": "false",
+        "options": [
+          "千葉市",
+          "千葉県",
+          "東京都",
+          "埼玉県",
+          "神奈川県",
+          "その他"
+        ]
+      },
+      {
+        "question": "プログラミングの経験は?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "10年以上",
+          "6～10年",
+          "3～5年",
+          "3年以下",
+          "なし"
+        ]
+      },
+      {
+        "question": "うどんは好きか?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "はい",
+          "いいえ",
+          "分からない"
+        ]
+      }
+    ]
+  }
+}

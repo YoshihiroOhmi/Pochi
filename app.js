@@ -4,7 +4,7 @@
  */
 "use strict";
 
-var pochiVersion = '0.11';
+var pochiVersion = '0.12';
 
 var express = require('express');
 var routes = require('./routes');
@@ -70,15 +70,21 @@ app.all('/admin/\*', express.basicAuth(function(user,pass){
 	return user === config.adminUser && _pass === config.adminPassword;
 }));
 
-function solveIPaddress(nic) {
-    if (nic != undefined) {
-    	for (var i = 0; i < nic.length; i++) {
-    		if (nic[i].family == 'IPv4') {
-    			var url = 'http://'+nic[i].address;
-    			if (config.port != 80) {
-    				url = url + ':' + config.port;
+function solveIPaddress(name) {
+	var net = os.networkInterfaces();
+	for (var n in net) {
+    	if (n != undefined && n.match(name)) {
+    		var nic = net[n];
+    		console.log(n);
+    		for (var i = 0; i < nic.length; i++) {
+    			console.log(nic[i]);
+    			if (nic[i].family == 'IPv4') {
+    				var url = 'http://'+nic[i].address;
+    				if (config.port != 80) {
+    					url = url + ':' + config.port;
+    				}
+    				return url + '/';
     			}
-    			return url + '/';
     		}
     	}
     }
@@ -86,7 +92,8 @@ function solveIPaddress(nic) {
 }
 
 app.get('/', function(req, res) { 
-	res.render('client', {showSelection: config.showSelection, showResults: config.showResults}); 
+	res.render('client', {showSelection: config.showSelection, showResults: config.showResults,
+							pochiVersion:pochiVersion }); 
 });
 app.get('/about', function(req, res) { res.render('about', {pochiVersion: pochiVersion}); });
 app.get('/admin/address', function(req, res) { 
@@ -97,15 +104,15 @@ app.get('/admin/address', function(req, res) {
 			url = url + ':' + config.port;
 		}
 		url = url + '/';
-	} else {
-		var net = os.networkInterfaces();	
+	} else {	
 		var ostype = os.type();
 		if (ostype == 'Darwin') {
-			url = solveIPaddress(net.en0);
+			url = solveIPaddress(/en\d/);
 		} else if (ostype.search('Windows') >= 0) {
-			url = solveIPaddress(net['ローカル エリア接続']);
+			url = solveIPaddress('ローカル エリア接続');
+//			url = solveIPaddress(/ローカル エリア接続.*/);
 		} else {
-			url = solveIPaddress(net.eth0);
+			url = solveIPaddress(/eth\d/);
 		}
 	}
 console.log(url);	
@@ -123,7 +130,7 @@ app.get('/admin', function(req,res) {
 		}
 	}
 	questionIndex = -1;
-	res.render('admin', {files: files});
+	res.render('admin', {files: files, pochiVersion: pochiVersion});
 });
 app.get('/admin/question', function(req,res) {
 	var str = fs.readFileSync(dataDir+req.query.file);
@@ -347,7 +354,7 @@ var responses=[];
 var responseLog={};
 var isResponsing = false;
 var responseChange = 0;
-var currentUpdateInterval = 30;
+var currentUpdateInterval = 100;
 var startTime = 0;
 
 function solveResponse(includeResponse) {

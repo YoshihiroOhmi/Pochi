@@ -1,0 +1,60 @@
+{
+  "title": "サンプルの質問集",
+  "results": [
+    {
+      "questionNumber": 0,
+      "response": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "numUser": 1,
+      "total": 0,
+      "startTime": 1398169100040,
+      "endTime": 1398169102724
+    }
+  ],
+  "questions": {
+    "title": "サンプルの質問集",
+    "contents": [
+      {
+        "question": "あなたの出身地は?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "千葉市",
+          "千葉県",
+          "東京都",
+          "埼玉県",
+          "神奈川県",
+          "その他"
+        ]
+      },
+      {
+        "question": "プログラミングの経験は?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "10年以上",
+          "6～10年",
+          "3～5年",
+          "3年以下",
+          "なし"
+        ]
+      },
+      {
+        "question": "うどんは好きか?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "はい",
+          "いいえ",
+          "分からない"
+        ]
+      }
+    ]
+  }
+}

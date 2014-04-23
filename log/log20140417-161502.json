@@ -1,0 +1,115 @@
+{
+  "title": "サンプルの質問集",
+  "results": [
+    {
+      "questionNumber": 0,
+      "response": [
+        1,
+        6,
+        2,
+        0,
+        1,
+        0
+      ],
+      "numUser": 10,
+      "total": 10,
+      "startTime": 1397718781105,
+      "endTime": 1397718806438
+    },
+    {
+      "questionNumber": 1,
+      "response": [
+        0,
+        0,
+        0,
+        5,
+        5
+      ],
+      "numUser": 10,
+      "total": 10,
+      "startTime": 1397718809341,
+      "endTime": 1397718820240
+    },
+    {
+      "questionNumber": 0,
+      "response": [
+        1,
+        5,
+        1,
+        0,
+        1,
+        0
+      ],
+      "numUser": 10,
+      "total": 8,
+      "startTime": 1397718849868,
+      "endTime": 1397718857121
+    },
+    {
+      "questionNumber": 1,
+      "response": [
+        0,
+        0,
+        0,
+        7,
+        3
+      ],
+      "numUser": 10,
+      "total": 10,
+      "startTime": 1397718859384,
+      "endTime": 1397718869480
+    },
+    {
+      "questionNumber": 2,
+      "response": [
+        10,
+        0,
+        0
+      ],
+      "numUser": 10,
+      "total": 10,
+      "startTime": 1397718884392,
+      "endTime": 1397718891218
+    }
+  ],
+  "questions": {
+    "title": "サンプルの質問集",
+    "contents": [
+      {
+        "question": "あなたの出身地は?",
+        "type": "options",
+        "showResults": "false",
+        "options": [
+          "千葉市",
+          "千葉県",
+          "東京都",
+          "埼玉県",
+          "神奈川県",
+          "その他"
+        ]
+      },
+      {
+        "question": "プログラミングの経験は?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "10年以上",
+          "6～10年",
+          "3～5年",
+          "3年以下",
+          "なし"
+        ]
+      },
+      {
+        "question": "うどんは好きか?",
+        "type": "options",
+        "showResults": "true",
+        "options": [
+          "はい",
+          "いいえ",
+          "分からない"
+        ]
+      }
+    ]
+  }
+}

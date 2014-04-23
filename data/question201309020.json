@@ -4,7 +4,7 @@
         {
             "question": "あなたの出身地は?",
             "type": "options",
-            "showResults": "false",
+            "showResults": "true",
             "options": [
                 "千葉市",
                 "千葉県",
