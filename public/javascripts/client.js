@@ -94,13 +94,20 @@ function response(code) {
 	   	$('#question').css('color', 'gray');
 console.log(showSelection);
 	   	if (showSelection) {
-		   	for (var i = 1; $('#o'+i).size() > 0; i++) {
+/*		   	for (var i = 1; $('#o'+i).size() > 0; i++) {
 				$('#o'+i).children().css('background-color','');
 		   	}
+*/
 			$('#o'+code).children().css('background-color', '#ffc000');
 		}
 	});
 	$.mobile.showPageLoadingMsg();
+	if (showSelection) {
+	   	for (var i = 1; $('#o'+i).size() > 0; i++) {
+			$('#o'+i).children().css('background-color','');
+	   	}
+		$('#o'+code).children().css('background-color', '#ff4000');
+	}
 	setTimeout('responseCheck('+clickSerial+')', 5000);
 	clickSerial++;
 }
