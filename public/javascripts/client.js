@@ -1,6 +1,7 @@
 ﻿var _socket;
 var clicked = {};
 var clickSerial = 0;
+var prevClick = -1;
 var showSelection;
 var showResults;
 
@@ -90,22 +91,33 @@ function response(code) {
     var r = _socket.emit('response', senddata, function(data){
 	   	delete clicked[''+data];
 	    console.log('response '+code+':'+data);
-	    $.mobile.hidePageLoadingMsg();
+//	    $.mobile.hidePageLoadingMsg();
 	   	$('#question').css('color', 'gray');
 console.log(showSelection);
 	   	if (showSelection) {
-/*		   	for (var i = 1; $('#o'+i).size() > 0; i++) {
+/*
+	   		if (prevClick >= 0) {
+	   			$('#o'+prevClick).children().css('background-color','');
+	   		}
+	   		prevClick = code;
+		   	for (var i = 1; $('#o'+i).size() > 0; i++) {
 				$('#o'+i).children().css('background-color','');
 		   	}
 */
 			$('#o'+code).children().css('background-color', '#ffc000');
 		}
 	});
-	$.mobile.showPageLoadingMsg();
+//	$.mobile.showPageLoadingMsg();
 	if (showSelection) {
+		if (prevClick >= 0) {
+			$('#o'+prevClick).children().css('background-color','');
+		}
+		prevClick = code;
+/*
 	   	for (var i = 1; $('#o'+i).size() > 0; i++) {
 			$('#o'+i).children().css('background-color','');
 	   	}
+*/
 		$('#o'+code).children().css('background-color', '#ff4000');
 	}
 	setTimeout('responseCheck('+clickSerial+')', 5000);
