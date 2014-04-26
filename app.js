@@ -4,7 +4,7 @@
  */
 "use strict";
 
-var pochiVersion = '0.12';
+var pochiVersion = '0.13';
 
 var express = require('express');
 var routes = require('./routes');
@@ -354,7 +354,7 @@ var responses=[];
 var responseLog={};
 var isResponsing = false;
 var responseChange = 0;
-var currentUpdateInterval = 100;
+var currentUpdateInterval = 200;
 var startTime = 0;
 
 function solveResponse(includeResponse) {
@@ -467,13 +467,13 @@ io.configure(function () {
 });
 
 function clientId(socket) {
+	if (config.clientKey == 'ipaddress') {
+		return socket.handshake.address.address;
+	}
 	if (config.clientKey == 'cookie') {
 		if (socket.handshake.sessionID != undefined) {
 			return socket.handshake.sessionID;
 		}
-	}
-	if (config.clientKey == 'ipaddress') {
-		return socket.handshake.address.address;
 	}
 	return socket.id;
 }
@@ -505,11 +505,13 @@ io.on('connection',function(socket){
 	
 	socket.on('response',function(data, fn){
 //	    var uid = socket.get('userId');
-		responses[clientId(socket)] = data.code;
+		var cid = clientId(socket);
+		responses[cid] = data.code;
 		responseChange++;
 //	    console.log('response['+socket.handshake.address.address+']:'+data);
-	    console.log('response['+clientId(socket)+']:'+data.code);
-		fn(data.serial);
+	    console.log('response['+cid+']:'+data.code);
+//		fn(data.serial);
+		fn();
 	});
 
 	socket.on('result',function(data, fn){

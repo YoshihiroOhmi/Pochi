@@ -1,4 +1,4 @@
-﻿# Pochi version 0.12 README  
+﻿# Pochi version 0.13 README  
 大見 嘉弘 <ohmi@rsch.tuis.ac.jp>
 
 Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現したもので、

@@ -75,22 +75,28 @@ jQuery(function($) {
 	
 });
 
-function responseCheck(serial) {
-	if (clicked[''+serial] == 1) {
+//function responseCheck(serial) {
+function responseTimeout() {
+//	if (clicked[''+serial] == 1) {
 		$('#question').css('color', 'red');
 //		$.mobile.changePage('#connectionerror');
 		alert('接続できません');
 		location.reload();
-	}
+//	}
 //    console.log('check '+serial+' '+clicked[''+serial]);
 }
 
 function response(code) {
-	clicked[''+clickSerial]=1;
-	var senddata = {code:code, serial:clickSerial};
-    var r = _socket.emit('response', senddata, function(data){
-	   	delete clicked[''+data];
-	    console.log('response '+code+':'+data);
+//	clicked[''+clickSerial]=1;
+	var timer = setTimeout('responseTimeout()', 5000);
+//	var senddata = {code:code, serial:clickSerial};
+	var senddata = {code:code, timer:timer};
+//    var r = _socket.emit('response', senddata, function(data){
+    var r = _socket.emit('response', senddata, function(){
+//	   	delete clicked[''+data];
+		clearTimeout(timer);
+//	    console.log('response '+code+':'+data);
+	    console.log('response '+code);
 //	    $.mobile.hidePageLoadingMsg();
 	   	$('#question').css('color', 'gray');
 console.log(showSelection);
@@ -120,6 +126,6 @@ console.log(showSelection);
 */
 		$('#o'+code).children().css('background-color', '#ff4000');
 	}
-	setTimeout('responseCheck('+clickSerial+')', 5000);
-	clickSerial++;
+//	setTimeout('responseCheck('+clickSerial+')', 5000);
+//	clickSerial++;
 }
