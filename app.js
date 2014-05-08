@@ -354,7 +354,7 @@ var responses=[];
 var responseLog={};
 var isResponsing = false;
 var responseChange = 0;
-var currentUpdateInterval = 200;
+var currentUpdateInterval = 500;
 var startTime = 0;
 
 function solveResponse(includeResponse) {
