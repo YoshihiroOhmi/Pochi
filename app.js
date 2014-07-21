@@ -109,7 +109,7 @@ app.get('/admin/address', function(req, res) {
 		if (ostype == 'Darwin') {
 			url = solveIPaddress(/en\d/);
 		} else if (ostype.search('Windows') >= 0) {
-			url = solveIPaddress('ローカル エリア接続');
+			url = solveIPaddress('ワイヤレス ネットワーク接続|ローカル エリア接続');
 //			url = solveIPaddress(/ローカル エリア接続.*/);
 		} else {
 			url = solveIPaddress(/eth\d/);
