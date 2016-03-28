@@ -1,14 +1,15 @@
 {
   "name": "Pochi",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.0rc3",
+    "express": "*",
+    "basic-auth-connect": "*",
     "cookie": "*",
     "ejs": "*",
-    "socket.io":"<1.0.0"
+    "socket.io":"*"
   }
 }

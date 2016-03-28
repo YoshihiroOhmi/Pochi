@@ -1,4 +1,4 @@
-﻿# Pochi version 0.14 README  
+﻿# Pochi version 0.15 README  
 大見 嘉弘 <ohmi@rsch.tuis.ac.jp>
 
 Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現したもので、
@@ -16,10 +16,10 @@ Pochiは、いわゆるClicker (Audience Response System)をWeb上に実現し�
 
 * ブラウザ  
 	最近のFirefox, Safari, Chrome, Internet Explorer等
-	(WebSocketに対応していること。その他のプロトコルでも
-	 Socket.IOが対応していれば動作するが、遅かったり不安定
-	 な可能性が高い。例えば、Android標準ブラウザはWebSocket
-	 に対応していないため推奨しない。)
+	(WebSocketに対応していること。その他のプロトコルでもSocket.IOが
+         対応していれば動作するが、遅かったり不安定な可能性が高い。
+         例えば、(Android 3.xまでの)Android標準ブラウザはWebSocketに
+         対応していないため推奨しない。)
 
 # インストール方法
 * Node.jsをインストールする。  

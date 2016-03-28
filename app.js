@@ -4,7 +4,7 @@
  */
 "use strict";
 
-var pochiVersion = '0.14';
+var pochiVersion = '0.15';
 
 var express = require('express');
 var routes = require('./routes');
@@ -35,25 +35,22 @@ fs.writeFileSync('config.json', JSON.stringify(config,null,'    '),'utf-8');
 
 var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || config.port);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.cookieParser());
-  if (config.clientKey == 'cookie') {
-	  app.use(express.session({secret: 'Pochi', cookie:{maxAge: 600000}}));
-  }
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
-});
+app.set('port', process.env.PORT || config.port);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+//app.use(express.favicon());
+//app.use(express.logger('dev'));
+//app.use(express.bodyParser());
+//app.use(express.methodOverride());
+//app.use(express.cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.configure('development', function(){
+/*
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
   app.use(express.errorHandler());
-});
+}
+*/
 
 var dataDir = './data/';
 var logDir = './log/';
@@ -61,11 +58,13 @@ var logDir = './log/';
 var questions={};
 var questionIndex=-1;
 
-app.all('/admin', express.basicAuth(function(user,pass){
+var basicAuth = require('basic-auth-connect');
+
+app.all('/admin', basicAuth(function(user,pass){
 	var _pass = crypto.createHash('sha256').update(pass).digest('hex');
 	return user === config.adminUser && _pass === config.adminPassword;
 }));
-app.all('/admin/\*', express.basicAuth(function(user,pass){
+app.all('/admin/\*', basicAuth(function(user,pass){
 	var _pass = crypto.createHash('sha256').update(pass).digest('hex');
 	return user === config.adminUser && _pass === config.adminPassword;
 }));
@@ -447,24 +446,6 @@ function finishQuestions(socket) {
 //	isResponsing = false;
 	io.sockets.to('client').emit('message', {message:config.idleMessage});
 }
-
-io.configure(function () {
-	if (config.clientKey == 'cookie') {
-		io.set('authorization', function (handshakeData, callback) {
-			console.log('io authorization');
-	    	if(handshakeData.headers.cookie) {
-	      		var _cookie = handshakeData.headers.cookie;
-	      		var sessionID = cookie.parse(_cookie)['connect.sid'];
-	      		handshakeData.sessionID =  sessionID;
-	    	} else {
-	    		console.log('Cannot get Cookie!');
-	    		return callback(null, true);
-//	      		return callback('Cant get Cookie', false);
-	   		}
-	    	callback(null, true);
-		});
-	}
-});
 
 function clientId(socket) {
 	if (config.clientKey == 'ipaddress') {
